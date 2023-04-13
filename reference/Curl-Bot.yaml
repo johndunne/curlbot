@@ -147,6 +147,20 @@ paths:
                   dateOfBirth: '1996-08-24'
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
+  /ip:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: Requester's public IP.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicIp'
+        '429':
+          description: Too Many Requests
+      operationId: get-ip
 components:
   schemas:
     User:
@@ -189,3 +203,16 @@ components:
         - lastName
         - email
         - emailVerified
+    PublicIp:
+      title: PublicIp
+      x-stoplight:
+        id: jmnmx4jsmq415
+      type: object
+      properties:
+        ipv4:
+          type: string
+        ipv6:
+          type: string
+        geo:
+          type: string
+      description: IP Object issued to a request for querying public IP
