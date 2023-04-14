@@ -161,6 +161,30 @@ paths:
         '429':
           description: Too Many Requests
       operationId: get-ip
+  /time:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/UserTimezoneResponse'
+        '400':
+          description: 'Invalid country code, time zone or city.'
+      operationId: get-time
+      description: 'Get the current time in a timezone via country (capital city is assumed), timezone or city.'
+      parameters:
+        - schema:
+            type: array
+          in: query
+          name: country
+        - schema:
+            type: array
+          in: query
+          name: city
+        - schema:
+            type: array
+          in: query
+          name: timezone
 components:
   schemas:
     User:
@@ -216,3 +240,48 @@ components:
         geo:
           type: string
       description: IP Object issued to a request for querying public IP
+    UserTimezone:
+      title: UserTimezone
+      x-stoplight:
+        id: 2bbf0f148b8f2
+      type: array
+      items:
+        $ref: '#/components/schemas/Timezone'
+      description: Describes instantaneous times in a timezone
+    CurrentTime:
+      title: CurrentTime
+      x-stoplight:
+        id: chx17lguq548y
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        time:
+          type: string
+        homeOffset:
+          type: string
+      required:
+        - code
+        - name
+        - time
+        - homeOffset
+    Timezone:
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        offset:
+          type: string
+  responses:
+    UserTimezoneResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CurrentTime'
