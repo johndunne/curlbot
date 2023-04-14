@@ -278,10 +278,18 @@ components:
           type: string
   responses:
     UserTimezoneResponse:
-      description: Example response
+      description: The current times requested by an end point user.
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/CurrentTime'
+            type: object
+            properties:
+              currentTime:
+                type: string
+              times:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CurrentTime'
+            required:
+              - currentTime
+              - times
