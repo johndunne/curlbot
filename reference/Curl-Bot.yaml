@@ -260,13 +260,10 @@ components:
           type: string
         time:
           type: string
-        homeOffset:
-          type: string
       required:
         - code
         - name
         - time
-        - homeOffset
     Timezone:
       type: object
       properties:
