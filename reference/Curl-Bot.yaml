@@ -174,15 +174,15 @@ paths:
       description: 'Get the current time in a timezone via country (capital city is assumed), timezone or city.'
       parameters:
         - schema:
-            type: array
+            type: string
           in: query
           name: country
         - schema:
-            type: array
+            type: string
           in: query
           name: city
         - schema:
-            type: array
+            type: string
           in: query
           name: timezone
 components:
